@@ -10,7 +10,8 @@ one write(2) or vmsplice(2) to the pipe.
 Speaking of this overhead, this implementation
 is completely useless[1] unless the other
 program is will even read {PIPE_BUF} bytes
-(4096 on Linux, 512 on POSIX). Therefore,
+(4096 on Linux, 512 on POSIX) + 2²⁰−2¹⁶ bytes
+(on Linux, unspecified for POSIX). Therefore,
 this implementation of yes(1) is just silly
 and should not be used by anyone.
 

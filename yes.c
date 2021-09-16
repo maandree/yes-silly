@@ -1,6 +1,4 @@
 /* See LICENSE file for copyright and license details. */
-
-#define _GNU_SOURCE
 #include <sys/ioctl.h>
 #include <sys/uio.h>
 #include <alloca.h>
@@ -17,7 +15,7 @@
 #endif
 
 
-static char *argv0;
+static const char *argv0;
 static void (*writeall)(char *, size_t);
 
 
@@ -55,8 +53,9 @@ writeall_vmsplice(char *buf, size_t n)
 #endif
 
 int
-main(int argc, char *argv[])
+main(int argc, const char **argv)
 {
+	const char *argvbuf[3] = {NULL, "y", NULL};
 	size_t n, len, m = 0, p, cap = 0;
 	char *buf, *b;
 	int i, sz, fds[2], flags;
@@ -67,7 +66,8 @@ main(int argc, char *argv[])
 	argv0 = argv[0] ? argv[0] : "yes";
 	if (argc == 1) {
 		argc = 2;
-		argv = (char *[]){argv0, "y"};
+		argvbuf[0] = argv0;
+		argv = argvbuf;
 	}
 	n = (size_t)(argc - 1);
 
@@ -141,10 +141,9 @@ main(int argc, char *argv[])
 	}
 
 fallback:
-	for (p = 0;; p = (p + (size_t)r) % len) {
+	for (p = 0;; p = (p + (size_t)r) % len)
 		if ((r = write(STDOUT_FILENO, buf + p, len - p)) < 0)
 			goto fail;
-	}
 
 	return 0;
 

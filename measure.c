@@ -1,6 +1,4 @@
 /* See LICENSE file for copyright and license details. */
-
-#define _GNU_SOURCE
 #include <fcntl.h>
 #include <limits.h>
 #include <stdio.h>

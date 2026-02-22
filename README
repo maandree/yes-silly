@@ -1,5 +1,5 @@
 GNU yes(1) is not that fast!
-This implementaion is not only about 8
+This implementation is not only about 8
 times as fast[0], it uses half as much CPU.
 
 Note that this implementation is not even
@@ -9,7 +9,7 @@ the pipe and fill that buffer and only do
 one write(2) or vmsplice(2) to the pipe.
 Speaking of this overhead, this implementation
 is completely useless[1] unless the other
-program is will even read {PIPE_BUF} bytes
+program will even read {PIPE_BUF} bytes
 (4096 on Linux, 512 on POSIX) + 2²⁰−2¹⁶ bytes
 (on Linux, unspecified for POSIX). Therefore,
 this implementation of yes(1) is just silly
@@ -19,5 +19,5 @@ and should not be used by anyone.
 [0] On my computer. If you get different
     results please leave a comment.
 
-[1] Has no benefits what so every in any
+[1] Has no benefits whatsoevery in any
     aspect at all.

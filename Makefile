@@ -1,9 +1,9 @@
 .POSIX:
 
-CC = cc
+CC = c99
 
 CPPFLAGS = -D_DEFAULT_SOURCE -D_BSD_SOURCE -D_XOPEN_SOURCE=700 -D_GNU_SOURCE
-CFLAGS   = -std=c99 -Wall -O2
+CFLAGS   =
 LDFLAGS  = -s
 
 BIN = yes limit measure
@@ -22,3 +22,5 @@ clean:
 
 .SUFFIXES:
 .SUFFIXES: .c .o
+
+.PHONY: all clean
